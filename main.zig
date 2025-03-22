@@ -1,6 +1,11 @@
 const std = @import("std");
 
 pub fn main() void {
+    // Configurar la codificación UTF-8 en Windows
+    if (@import("builtin").os.tag == .windows) {
+        _ = std.os.windows.kernel32.SetConsoleOutputCP(65001);
+    }
+
     // Crear un logger
     const logger = std.log.scoped(.mi_app);
 
